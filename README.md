@@ -16,3 +16,6 @@ List available ISOs with `Get-LabAvailableOperatingSystem`
 
 ## Cleanup
 To delete the lab use `Remove-Lab` or `Remove-Lab -Name {Lab Name}`
+
+## Troubleshooting
+When using wifi as an external network sometimes it can get disconnected.  To fix open hyper-v, toggle vswitch to internal, then toggle but to external.  Can be done while network is still being created.
