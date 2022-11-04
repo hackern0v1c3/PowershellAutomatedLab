@@ -2,10 +2,11 @@
 # runs a post install script to setup a ton of user accounts
 
 $networkName = "WSL"
-$DependencyFolder = "C:\LabSources\PostInstallationActivities\PrepareFirstChildDomain"
+$currentPath = Get-Location
+$DependencyFolder = "$currentPath\PostInstallScripts"
 
 $postInstallActivity = @()
-$postInstallActivity += Get-LabPostInstallationActivity -ScriptFileName 'New-ADLabAccounts 2.0.ps1' -DependencyFolder $DependencyFolder
+$postInstallActivity += Get-LabPostInstallationActivity -ScriptFileName 'Add-Users.ps1' -DependencyFolder $DependencyFolder
 
 $dc1Parameters = @{
     Name                     = 'DC1'
