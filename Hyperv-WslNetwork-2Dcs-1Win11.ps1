@@ -1,11 +1,19 @@
+# Sets up two domain controllers and a single win 11 client
+# runs a post install script to setup a ton of user accounts
+
 $networkName = "WSL"
+$DependencyFolder = "C:\LabSources\PostInstallationActivities\PrepareFirstChildDomain"
+
+$postInstallActivity = @()
+$postInstallActivity += Get-LabPostInstallationActivity -ScriptFileName 'New-ADLabAccounts 2.0.ps1' -DependencyFolder $DependencyFolder
 
 $dc1Parameters = @{
-    Name            = 'DC1'
-    OperatingSystem = 'Windows Server 2022 Standard Evaluation (Desktop Experience)'
-    Network         = $networkName
-    Roles           = 'RootDC'
-    DomainName      = 'TestLab.local'
+    Name                     = 'DC1'
+    OperatingSystem          = 'Windows Server 2022 Standard Evaluation (Desktop Experience)'
+    Network                  = $networkName
+    Roles                    = 'RootDC'
+    DomainName               = 'TestLab.local'
+    PostInstallationActivity = $postInstallActivity
 }
 
 $dc2Parameters = @{
